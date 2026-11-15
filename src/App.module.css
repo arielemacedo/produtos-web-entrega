@@ -1,6 +1,6 @@
 .page {
-  width: min(100% - 2rem, 43rem);
-  margin: clamp(1.75rem, 6vw, 4rem) auto;
+  width: min(100% - 2rem, 47rem);
+  margin: clamp(1.75rem, 6vw, 4.5rem) auto;
 }
 
 .header {
@@ -9,52 +9,68 @@
 
 .header h1 {
   margin: 0;
-  font: 400 clamp(3.25rem, 8vw, 5rem) / 0.98 'Instrument Serif', Georgia, serif;
+  color: var(--text);
+  font-size: clamp(2.25rem, 6vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.08;
   letter-spacing: -0.035em;
-  color: #193f2e;
 }
 
 .header p {
-  margin: 0.65rem 0 0;
-  color: #53645a;
+  margin: 0.55rem 0 0;
+  color: var(--subtle);
 }
 
 .catalog {
   overflow: hidden;
-  background: #fffefa;
-  border: 1px solid #dbe1d6;
-  border-radius: 1rem;
-  box-shadow: 0 12px 32px #233f2d0d;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 0.9rem;
 }
 
 .filters {
   display: grid;
-  gap: 0.5rem;
-  padding: 1.5rem clamp(1rem, 4vw, 1.75rem);
-  background: #e7eee3;
-  border-bottom: 1px solid #dbe1d6;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem 1.75rem;
+  padding: 1.25rem clamp(1rem, 4vw, 1.5rem);
+  border-bottom: 1px solid var(--line);
+}
+
+.searchField {
+  display: grid;
+  gap: 0.375rem;
+  min-width: 0;
 }
 
 .searchLabel {
+  font-size: 0.875rem;
   font-weight: 700;
 }
 
 .searchInput {
   width: 100%;
-  min-height: 2.9rem;
-  padding: 0.55rem 0.8rem;
-  color: inherit;
-  background: #fffefa;
-  border: 1px solid #a4b5a7;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--control-border);
   border-radius: 0.5rem;
+  background: var(--page);
+  color: var(--text);
+}
+
+.searchInput::placeholder {
+  color: var(--subtle);
+  opacity: 1;
 }
 
 .stockFilter {
   display: flex;
   align-items: center;
+  align-self: end;
   gap: 0.6rem;
-  width: fit-content;
-  margin-top: 0.35rem;
+  min-height: 2.75rem;
+  color: var(--subtle);
+  font-size: 0.875rem;
   cursor: pointer;
 }
 
@@ -63,15 +79,15 @@
   width: 1.1rem;
   height: 1.1rem;
   margin: 0;
-  accent-color: #326e51;
+  accent-color: var(--accent);
   cursor: pointer;
 }
 
 .results {
   margin: 0;
-  padding: 1rem clamp(1rem, 4vw, 1.75rem);
-  color: #53645a;
-  font-size: 0.875rem;
+  padding: 0.8rem clamp(1rem, 4vw, 1.5rem);
+  color: var(--subtle);
+  font-size: 0.8125rem;
 }
 
 .table {
@@ -82,11 +98,13 @@
 
 .table th,
 .table td {
-  padding: 0.65rem clamp(1rem, 4vw, 1.75rem);
+  padding: 0.7rem clamp(1rem, 4vw, 1.5rem);
 }
 
 .table thead {
-  border-block: 1px solid #dbe1d6;
+  border-top: 1px solid var(--line);
+  color: var(--subtle);
+  font-size: 0.8125rem;
 }
 
 .table thead th:last-child,
@@ -97,21 +115,39 @@
 }
 
 .category th {
-  background: #eef2e9;
-  color: #30533d;
-  font-size: 0.875rem;
+  padding-block: 0.45rem;
+  background: var(--inset);
+  color: var(--accent);
+  font-size: 0.8125rem;
+  font-weight: 700;
 }
 
 .table td {
-  border-top: 1px solid #eceee8;
+  border-bottom: 1px solid var(--line);
+}
+
+.table tbody:last-child tr:last-child td {
+  border-bottom: 0;
+}
+
+.table tbody tr:hover td {
+  background: var(--hover);
 }
 
 .outOfStock {
   display: inline-block;
-  margin-inline-start: 0.65rem;
-  padding: 0.12rem 0.45rem;
-  color: #902d26;
-  background: #f8eae6;
-  border-radius: 0.3rem;
+  margin-inline-start: 0.5rem;
+  padding: 0.08rem 0.5rem;
+  border-radius: 999px;
+  background: var(--unavailable-bg);
+  color: var(--unavailable);
+  font-size: 0.75rem;
   font-weight: 600;
+}
+
+@media (max-width: 37rem) {
+  .filters {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
 }

@@ -23,15 +23,17 @@ function SearchBar({
 }: SearchBarProps) {
   return (
     <div className={styles.filters}>
-      <label className={styles.searchLabel} htmlFor="product-search">Buscar produto</label>
-      <input
-        id="product-search"
-        className={styles.searchInput}
-        type="search"
-        placeholder="Ex.: maçã"
-        value={filterText}
-        onChange={(event) => onFilterTextChange(event.target.value)}
-      />
+      <div className={styles.searchField}>
+        <label className={styles.searchLabel} htmlFor="product-search">Buscar produto</label>
+        <input
+          id="product-search"
+          className={styles.searchInput}
+          type="search"
+          placeholder="Ex.: maçã"
+          value={filterText}
+          onChange={(event) => onFilterTextChange(event.target.value)}
+        />
+      </div>
       <label className={styles.stockFilter}>
         <input
           type="checkbox"
