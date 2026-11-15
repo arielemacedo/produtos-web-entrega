@@ -1,32 +1,24 @@
-# React + TypeScript + Vite
+# Produtos Web
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+Atividade de Programação para Internet II. Catálogo de frutas, verduras e legumes feito com React, Vite e TypeScript a partir de [Pensando em React](https://pt-br.react.dev/learn/thinking-in-react).
 
-Currently, two official plugins are available:
+## Como rodar
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+Use Node.js 22 (versão 22.12 ou superior).
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm ci
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+Abra o endereço que aparecer no terminal. O comando `npm run build` verifica os tipos e gera a pasta `dist` para publicação. O comando `npm run lint` verifica o código.
+
+## Como a tela foi dividida
+
+- `FilterableProductTable` reúne os filtros e a tabela.
+- `SearchBar` contém o campo de busca e a opção de estoque.
+- `ProductTable` agrupa os produtos por categoria.
+- `ProductCategoryRow` mostra o nome da categoria.
+- `ProductRow` mostra o nome, o preço e a indicação de falta de estoque.
+
+A lista inicial fica em `src/products.ts`. O tipo `Product` define os campos de cada produto.

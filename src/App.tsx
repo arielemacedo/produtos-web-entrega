@@ -1,122 +1,85 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { categories, products } from './products'
+import type { Category, Product } from './products'
 
-function App() {
-  const [count, setCount] = useState(0)
+const currency = new Intl.NumberFormat('pt-BR', {
+  style: 'currency',
+  currency: 'BRL',
+})
 
+function SearchBar() {
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
-
-      <div className="ticks"></div>
-
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+    <div>
+      <label htmlFor="product-search">Buscar produto</label>
+      <input id="product-search" type="search" placeholder="Ex.: maçã" />
+      <label>
+        <input type="checkbox" />
+        Mostrar apenas produtos em estoque
+      </label>
+    </div>
   )
 }
 
-export default App
+function ProductCategoryRow({ category }: { category: Category }) {
+  return (
+    <tr>
+      <th colSpan={2} scope="rowgroup">{category}</th>
+    </tr>
+  )
+}
+
+function ProductRow({ product }: { product: Product }) {
+  return (
+    <tr>
+      <td>
+        {product.name}
+        {!product.stocked && <small>Sem estoque</small>}
+      </td>
+      <td>{currency.format(product.price)}</td>
+    </tr>
+  )
+}
+
+function ProductTable({ products }: { products: Product[] }) {
+  return (
+    <table aria-label="Tabela de produtos">
+      <thead>
+        <tr>
+          <th scope="col">Produto</th>
+          <th scope="col">Preço</th>
+        </tr>
+      </thead>
+      {categories.map((category) => {
+        const categoryProducts = products.filter((product) => product.category === category)
+
+        if (categoryProducts.length === 0) return null
+
+        return (
+          <tbody key={category}>
+            <ProductCategoryRow category={category} />
+            {categoryProducts.map((product) => (
+              <ProductRow key={product.name} product={product} />
+            ))}
+          </tbody>
+        )
+      })}
+    </table>
+  )
+}
+
+function FilterableProductTable({ products }: { products: Product[] }) {
+  return (
+    <section aria-label="Catálogo e filtros">
+      <SearchBar />
+      <ProductTable products={products} />
+    </section>
+  )
+}
+
+export default function App() {
+  return (
+    <main>
+      <h1>Produtos Web</h1>
+      <FilterableProductTable products={products} />
+    </main>
+  )
+}
