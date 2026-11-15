@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import styles from './App.module.css'
 import { categories, products } from './products'
 import type { Category, Product } from './products'
 
@@ -21,16 +22,17 @@ function SearchBar({
   onInStockOnlyChange,
 }: SearchBarProps) {
   return (
-    <div>
-      <label htmlFor="product-search">Buscar produto</label>
+    <div className={styles.filters}>
+      <label className={styles.searchLabel} htmlFor="product-search">Buscar produto</label>
       <input
         id="product-search"
+        className={styles.searchInput}
         type="search"
         placeholder="Ex.: maçã"
         value={filterText}
         onChange={(event) => onFilterTextChange(event.target.value)}
       />
-      <label>
+      <label className={styles.stockFilter}>
         <input
           type="checkbox"
           checked={inStockOnly}
@@ -44,7 +46,7 @@ function SearchBar({
 
 function ProductCategoryRow({ category }: { category: Category }) {
   return (
-    <tr>
+    <tr className={styles.category}>
       <th colSpan={2} scope="rowgroup">{category}</th>
     </tr>
   )
@@ -55,7 +57,7 @@ function ProductRow({ product }: { product: Product }) {
     <tr>
       <td>
         {product.name}
-        {!product.stocked && <small>Sem estoque</small>}
+        {!product.stocked && <small className={styles.outOfStock}>Sem estoque</small>}
       </td>
       <td>{currency.format(product.price)}</td>
     </tr>
@@ -64,7 +66,7 @@ function ProductRow({ product }: { product: Product }) {
 
 function ProductTable({ products }: { products: Product[] }) {
   return (
-    <table aria-label="Tabela de produtos">
+    <table className={styles.table} aria-label="Tabela de produtos">
       <thead>
         <tr>
           <th scope="col">Produto</th>
@@ -105,14 +107,14 @@ function FilterableProductTable({ products }: { products: Product[] }) {
   })
 
   return (
-    <section aria-label="Catálogo e filtros">
+    <section className={styles.catalog} aria-label="Catálogo e filtros">
       <SearchBar
         filterText={filterText}
         inStockOnly={inStockOnly}
         onFilterTextChange={setFilterText}
         onInStockOnlyChange={setInStockOnly}
       />
-      <p role="status">
+      <p className={styles.results} role="status">
         {visibleProducts.length === 0
           ? 'Nenhum produto encontrado.'
           : `${visibleProducts.length} ${visibleProducts.length === 1 ? 'produto encontrado' : 'produtos encontrados'}`}
@@ -124,8 +126,11 @@ function FilterableProductTable({ products }: { products: Product[] }) {
 
 export default function App() {
   return (
-    <main>
-      <h1>Produtos Web</h1>
+    <main className={styles.page}>
+      <header className={styles.header}>
+        <h1>Produtos Web</h1>
+        <p>Catálogo de frutas, verduras e legumes</p>
+      </header>
       <FilterableProductTable products={products} />
     </main>
   )

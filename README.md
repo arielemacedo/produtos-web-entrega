@@ -29,3 +29,11 @@ A lista inicial fica em `src/products.ts`. O tipo `Product` define os campos de 
 2. O componente passa os valores e as funções de atualização para `SearchBar` pelas props. Quando o usuário mexe em um controle, o evento chama a função correspondente.
 3. A cada atualização, `filter` calcula os produtos visíveis. A busca compara uma parte do nome e aceita, por exemplo, `maca` para encontrar **Maçã**.
 4. A tabela recebe a lista filtrada. A contagem usa o tamanho dessa mesma lista.
+
+## Estilos
+
+`App.module.css` contém as classes da tela. O Vite dá um nome único a cada classe desse arquivo para evitar conflitos com estilos de outros componentes. `index.css` reúne os estilos básicos da página.
+
+## Publicação
+
+O arquivo `netlify.toml` indica à Netlify o comando de build (`npm run build`) e a pasta de publicação (`dist`).

@@ -1,8 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif&display=swap');
+
+:root {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  color: #1c3026;
+  background: #f2f4ed;
+  font-synthesis: none;
+  line-height: 1.5;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
 }
 
-button,
 input {
   font: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid #326e51;
+  outline-offset: 3px;
 }

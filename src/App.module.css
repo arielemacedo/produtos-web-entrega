@@ -1,0 +1,117 @@
+.page {
+  width: min(100% - 2rem, 43rem);
+  margin: clamp(1.75rem, 6vw, 4rem) auto;
+}
+
+.header {
+  margin-bottom: 1.75rem;
+}
+
+.header h1 {
+  margin: 0;
+  font: 400 clamp(3.25rem, 8vw, 5rem) / 0.98 'Instrument Serif', Georgia, serif;
+  letter-spacing: -0.035em;
+  color: #193f2e;
+}
+
+.header p {
+  margin: 0.65rem 0 0;
+  color: #53645a;
+}
+
+.catalog {
+  overflow: hidden;
+  background: #fffefa;
+  border: 1px solid #dbe1d6;
+  border-radius: 1rem;
+  box-shadow: 0 12px 32px #233f2d0d;
+}
+
+.filters {
+  display: grid;
+  gap: 0.5rem;
+  padding: 1.5rem clamp(1rem, 4vw, 1.75rem);
+  background: #e7eee3;
+  border-bottom: 1px solid #dbe1d6;
+}
+
+.searchLabel {
+  font-weight: 700;
+}
+
+.searchInput {
+  width: 100%;
+  min-height: 2.9rem;
+  padding: 0.55rem 0.8rem;
+  color: inherit;
+  background: #fffefa;
+  border: 1px solid #a4b5a7;
+  border-radius: 0.5rem;
+}
+
+.stockFilter {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: fit-content;
+  margin-top: 0.35rem;
+  cursor: pointer;
+}
+
+.stockFilter input {
+  flex-shrink: 0;
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: 0;
+  accent-color: #326e51;
+  cursor: pointer;
+}
+
+.results {
+  margin: 0;
+  padding: 1rem clamp(1rem, 4vw, 1.75rem);
+  color: #53645a;
+  font-size: 0.875rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.table th,
+.table td {
+  padding: 0.65rem clamp(1rem, 4vw, 1.75rem);
+}
+
+.table thead {
+  border-block: 1px solid #dbe1d6;
+}
+
+.table thead th:last-child,
+.table td:last-child {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.category th {
+  background: #eef2e9;
+  color: #30533d;
+  font-size: 0.875rem;
+}
+
+.table td {
+  border-top: 1px solid #eceee8;
+}
+
+.outOfStock {
+  display: inline-block;
+  margin-inline-start: 0.65rem;
+  padding: 0.12rem 0.45rem;
+  color: #902d26;
+  background: #f8eae6;
+  border-radius: 0.3rem;
+  font-weight: 600;
+}
